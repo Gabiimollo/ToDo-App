@@ -25,4 +25,4 @@
     ```bash
     npm start
     ```
-8. Accede desde tu navegador a: (http://localhost:5173/)[http://localhost:5173/]
+8. Accede desde tu navegador a: (http://localhost:5173/)
