@@ -24,6 +24,20 @@ app.get('/api/tasks', (req, res) => {
     res.json(tasks);
 });
 
+// GET /api/tasks/:id - Obtener una tarea por ID
+app.get('/api/tasks/:id', (req, res) => {
+    const { id } = req.params;
+    const taskId = parseInt(id);
+    if (isNaN(taskId)) {
+        return res.status(400).json({ message: 'ID de tarea inválido.' });
+    }
+    const task = tasks.find(task => task.id === taskId);
+    if (!task) {
+        return res.status(404).json({ message: 'Tarea no encontrada.' });
+    }
+    res.json(task);
+});
+
 // POST /api/tasks - Crear una nueva tarea
 app.post('/api/tasks', (req, res) => {
     const { text } = req.body;
@@ -35,10 +49,10 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(newTask);
 });
 
-// PUT /api/tasks/:id - Actualizar una tarea existente
+// Ruta PUT /api/tasks/:id - Actualizar una tarea existente
 app.put('/api/tasks/:id', (req, res) => {
     const { id } = req.params;
-    const { text, completed } = req.body;
+    const { text, completed } = req.body; // <-- Aquí se desestructura 'completed' del cuerpo
 
     const taskId = parseInt(id);
     if (isNaN(taskId)) {
@@ -51,18 +65,20 @@ app.put('/api/tasks/:id', (req, res) => {
         return res.status(404).json({ message: 'Tarea no encontrada.' });
     }
 
-    // Validación básica para las propiedades a actualizar
+    // APLICA LA ACTUALIZACIÓN
+    // Asegúrate de que estás actualizando las propiedades correctas de la tarea.
     if (text !== undefined) {
         if (typeof text !== 'string' || text.trim() === '') {
             return res.status(400).json({ message: 'El texto de la tarea debe ser una cadena no vacía.' });
         }
         tasks[taskIndex].text = text.trim();
     }
-    if (completed !== undefined) {
+    // ¡ESTA ES LA LÍNEA CLAVE PARA 'completed'!
+    if (completed !== undefined) { // Solo actualiza si 'completed' se envió en el body
         if (typeof completed !== 'boolean') {
             return res.status(400).json({ message: 'El estado de completado debe ser un booleano.' });
         }
-        tasks[taskIndex].completed = completed;
+        tasks[taskIndex].completed = completed; // Asigna directamente el valor del body
     }
 
     // Si no se proporcionó ni texto ni completed, es una solicitud malformada.
@@ -70,7 +86,7 @@ app.put('/api/tasks/:id', (req, res) => {
         return res.status(400).json({ message: 'Se requiere al menos el campo "text" o "completed" para actualizar.' });
     }
 
-    res.json(tasks[taskIndex]);
+    res.json(tasks[taskIndex]); // Devuelve la tarea YA ACTUALIZADA
 });
 
 // DELETE /api/tasks/:id - Eliminar una tarea

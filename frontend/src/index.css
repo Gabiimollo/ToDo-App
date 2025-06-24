@@ -1,0 +1,166 @@
+/* frontend/src/index.css */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Botones */
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  margin: 5px;
+}
+
+.button.primary-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.button.primary-button:hover {
+  background-color: #0056b3;
+}
+
+.button.edit-button {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.button.edit-button:hover {
+  background-color: #e0a800;
+}
+
+.button.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button.delete-button:hover {
+  background-color: #c82333;
+}
+
+.button.secondary-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.button.secondary-button:hover {
+  background-color: #5a6268;
+}
+
+
+/* Formularios */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+form input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+/* Lista de Tareas */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.task-item:hover {
+  background-color: #e2e6ea;
+}
+
+.task-item .task-text {
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: left;
+  word-break: break-word; /* Para manejar textos largos */
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 15px; /* Espacio entre el texto y los botones */
+}
+
+/* Mensajes de error */
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
